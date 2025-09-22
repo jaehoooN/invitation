@@ -627,14 +627,13 @@
                     flashElements[currentIndex].classList.add('active');
                     
                     // 이전 이미지 페이드아웃 (약간의 딜레이 후)
+                    const prevIndex = currentIndex - 1;
                     setTimeout(() => {
-                        if (currentIndex > 0) {
-                            flashElements[currentIndex - 1].classList.add('fade-out');
-                            // 완전히 사라진 후 클래스 제거
-                            setTimeout(() => {
-                                flashElements[currentIndex - 1].classList.remove('active', 'fade-out');
-                            }, 400);
-                        }
+                        flashElements[prevIndex].classList.add('fade-out');
+                        // 완전히 사라진 후 클래스 제거
+                        setTimeout(() => {
+                            flashElements[prevIndex].classList.remove('active', 'fade-out');
+                        }, 400);
                     }, 100);
                     
                     currentIndex++;
