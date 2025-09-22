@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온빈(溫濱) - 초대장</title>
+    <meta property="og:title" content="온빈(溫濱) - 초대장">
+    <meta property="og:description" content="모던 한식의 새로운 시작, 온빈에서 특별한 경험을 선사합니다.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nanum Myeongjo', serif;
+            overflow-x: hidden;
+            background-color: #F5E6D3;
+        }
+        
+        /* 인트로 화면 */
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+        
+        #intro.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* 로고 컨테이너 */
+        .logo-container {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInLogo 1.5s ease-out forwards;
+        }
+        
+        /* 온빈 로고 이미지 */
+        .logo-img {
+            width: 280px;
+            height: auto;
+            filter: invert(1) brightness(0.9);
+        }
+        
+        @keyframes fadeInLogo {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 필름 노이즈 효과 */
+        .film-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.08;
+            z-index: 1;
+        }
+        
+        .film-grain:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            animation: grain 0.3s steps(1) infinite;
+        }
+        
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-1%, -1%); }
+            20% { transform: translate(1%, 1%); }
+            30% { transform: translate(-1%, 1%); }
+            40% { transform: translate(1%, -1%); }
+            50% { transform: translate(-1%, 0); }
+            60% { transform: translate(1%, 0); }
+            70% { transform: translate(0, 1%); }
+            80% { transform: translate(0, -1%); }
+            90% { transform: translate(-1%, -1%); }
+        }
+        
+        /* 온양행궁 이미지 플래시 */
+        .onyang-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+        
+        .onyang-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-size: cover;
+            background-position: center;
+            filter: sepia(1) contrast(1.2) brightness(0.9);
+            display: none;
+        }
+        
+        .onyang-flash.active {
+            display: block;
+            animation: flash 0.3s ease-out;
+        }
+        
+        @keyframes flash {
+            0% { 
+                opacity: 0;
+                transform: scale(1.05);
+            }
+            50% { 
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% { 
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+        
+        /* 플래시 이미지들 */
+        .flash1 { background-image: linear-gradient(45deg, #3a3a3a, #5a5a5a); }
+        .flash2 { background-image: linear-gradient(135deg, #4a4a4a, #6a6a6a); }
+        .flash3 { background-image: linear-gradient(225deg, #3a3a3a, #7a7a7a); }
+        .flash4 { background-image: linear-gradient(315deg, #4a4a4a, #5a5a5a); }
+        .flash5 { background-image: linear-gradient(45deg, #5a5a5a, #6a6a6a); }
+        .flash6 { background-image: linear-gradient(135deg, #3a3a3a, #7a7a7a); }
+        .flash7 { background-image: linear-gradient(225deg, #4a4a4a, #6a6a6a); }
+        .flash8 { background-image: linear-gradient(315deg, #5a5a5a, #7a7a7a); }
+        .flash9 { background-image: linear-gradient(45deg, #3a3a3a, #6a6a6a); }
+        .flash10 { background-image: linear-gradient(135deg, #4a4a4a, #7a7a7a); }
+        
+        /* 메인 컨텐츠 */
+        #main-content {
+            min-height: 100vh;
+            padding: 60px 20px;
+            opacity: 0;
+            transition: opacity 1.5s ease-in;
+            background: linear-gradient(180deg, #F5E6D3 0%, #EFD9C1 100%);
+            position: relative;
+        }
+        
+        #main-content.show {
+            opacity: 1;
+        }
+        
+        /* 한지 텍스처 오버레이 */
+        #main-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 69, 19, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 69, 19, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(139, 69, 19, 0.01) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .invitation-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 메인 로고 */
+        .main-logo {
+            width: 160px;
+            height: auto;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #3D2F2F;
+            margin-bottom: 40px;
+            letter-spacing: 0.2em;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #5D4E4E;
+            margin-bottom: 50px;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+        
+        .content {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: #4A3C3C;
+            margin-bottom: 40px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .content p {
+            margin-bottom: 25px;
+        }
+        
+        .details {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 35px;
+            border-radius: 15px;
+            margin: 50px 0;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .details h3 {
+            font-size: 1.4rem;
+            color: #3D2F2F;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+        
+        .details p {
+            font-size: 1.05rem;
+            color: #5D4E4E;
+            margin: 15px 0;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        .details p strong {
+            color: #3D2F2F;
+            font-weight: 700;
+        }
+        
+        .map-button {
+            background: #2C2C2C;
+            color: #F5E6D3;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 30px;
+            font-size: 1.15rem;
+            font-family: 'Nanum Myeongjo', serif;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+        
+        .map-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #1a1a1a;
+        }
+        
+        .signature {
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(61, 47, 47, 0.2);
+        }
+        
+        .signature p {
+            font-size: 1.05rem;
+            color: #5D4E4E;
+            line-height: 2;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+        
+        /* 장식 요소 */
+        .ornament {
+            width: 40px;
+            height: 1px;
+            background: rgba(61, 47, 47, 0.3);
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(61, 47, 47, 0.2);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .ornament::before {
+            left: -15px;
+        }
+        
+        .ornament::after {
+            right: -15px;
+        }
+        
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 200px;
+            }
+            
+            .main-logo {
+                width: 120px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .content {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .details {
+                padding: 25px 20px;
+            }
+            
+            .details h3 {
+                font-size: 1.2rem;
+            }
+            
+            .details p {
+                font-size: 0.95rem;
+            }
+            
+            .map-button {
+                padding: 15px 45px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 인트로 화면 -->
+    <div id="intro">
+        <div class="film-grain"></div>
+        
+        <!-- 온양행궁 플래시 이미지들 -->
+        <div class="onyang-images">
+            <div class="onyang-flash flash1"></div>
+            <div class="onyang-flash flash2"></div>
+            <div class="onyang-flash flash3"></div>
+            <div class="onyang-flash flash4"></div>
+            <div class="onyang-flash flash5"></div>
+            <div class="onyang-flash flash6"></div>
+            <div class="onyang-flash flash7"></div>
+            <div class="onyang-flash flash8"></div>
+            <div class="onyang-flash flash9"></div>
+            <div class="onyang-flash flash10"></div>
+        </div>
+        
+        <div class="logo-container">
+            <!-- 사용자가 제공한 온빈 로고 이미지 직접 삽입 -->
+            <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="온빈">
+            <!-- 실제 이미지 파일로 교체 필요: src="onbin-logo.png" -->
+        </div>
+    </div>
+    
+    <!-- 메인 컨텐츠 -->
+    <div id="main-content">
+        <div class="invitation-container">
+            <!-- 메인 페이지 로고 -->
+            <img class="main-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="온빈">
+            <!-- 실제 이미지 파일로 교체 필요: src="onbin-logo.png" -->
+            
+            <h1 class="title">초대합니다</h1>
+            <p class="subtitle">모던 한식의 새로운 시작</p>
+            
+            <div class="ornament"></div>
+            
+            <div class="content">
+                <p>
+                    조선의 왕들이 심신을 달래던 온양<br>
+                    그 유서 깊은 땅에서<br>
+                    온빈이 문을 엽니다
+                </p>
+                <p>
+                    세종대왕이 행궁을 세우고<br>
+                    현종과 숙종, 영조가 거닐던 그 자리<br>
+                    600년 역사의 온기를 담아<br>
+                    새로운 미식의 장을 펼치고자 합니다
+                </p>
+            </div>
+            
+            <div class="details">
+                <h3>가오픈 안내</h3>
+                <p><strong>일시</strong> | 2025년 10월 1일</p>
+                <p><strong>장소</strong> | 충남 아산시 신정호 상권</p>
+                <p><strong>영업시간</strong> | 추후 공지</p>
+                <p><strong>예약문의</strong> | 추후 공지</p>
+            </div>
+            
+            <div class="content">
+                <p>
+                    절제된 맛, 단정한 담음새<br>
+                    부드럽고 깊게 스며드는 조용한 상차림
+                </p>
+                <p>
+                    전복죽과 전복비빔밥<br>
+                    육회와 궁중요리를 재해석한 단품들<br>
+                    계절의 맛을 담은 특별한 코스까지
+                </p>
+                <p>
+                    한 상의 음식이 오늘의 흐름을 바꾸고<br>
+                    그날의 피로를 덜어주는<br>
+                    안온한 경험이 되기를 바랍니다
+                </p>
+            </div>
+            
+            <button class="map-button" onclick="openMap()">
+                위치 확인하기
+            </button>
+            
+            <div class="signature">
+                <p>
+                    온빈 溫濱<br>
+                    대표 올림
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 플래시 이미지 요소들
+        const flashElements = document.querySelectorAll('.onyang-flash');
+        let currentIndex = 0;
+        
+        // 인트로 애니메이션 시작
+        setTimeout(() => {
+            // 플래시 효과 시작
+            const flashInterval = setInterval(() => {
+                if (currentIndex < flashElements.length) {
+                    // 이전 이미지 숨기기
+                    if (currentIndex > 0) {
+                        flashElements[currentIndex - 1].classList.remove('active');
+                    }
+                    
+                    // 현재 이미지 보이기
+                    flashElements[currentIndex].classList.add('active');
+                    currentIndex++;
+                } else {
+                    // 마지막 이미지 숨기기
+                    if (flashElements.length > 0) {
+                        flashElements[flashElements.length - 1].classList.remove('active');
+                    }
+                    
+                    clearInterval(flashInterval);
+                    
+                    // 메인 컨텐츠로 전환
+                    setTimeout(() => {
+                        document.getElementById('intro').classList.add('fade-out');
+                        document.getElementById('main-content').classList.add('show');
+                        
+                        // 인트로 완전히 제거
+                        setTimeout(() => {
+                            document.getElementById('intro').style.display = 'none';
+                        }, 1000);
+                    }, 500);
+                }
+            }, 300); // 각 이미지를 0.3초 간격으로 표시
+        }, 2000); // 로고 표시 후 2초 뒤에 플래시 시작
+        
+        // 네이버 지도 열기 함수
+        function openMap() {
+            const address = "충남 아산시 신정호";
+            const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(address)}`;
+            window.open(naverMapUrl, '_blank');
+        }
+        
+        // 실제 구현 시 이미지 로드
+        window.addEventListener('DOMContentLoaded', function() {
+             실제 온빈 로고 이미지 경로로 교체
+             document.querySelectorAll('.logo-img, .main-logo').forEach(img => {
+                 img.src = 'onbin-logo.png';
+             });
+            
+             실제 온양행궁 이미지들로 교체
+             const onyangImageUrls = [
+                 'onyang1.jpg', 'onyang2.jpg', 'onyang3.jpg', 
+                 'onyang4.jpg', 'onyang5.jpg', 'onyang6.jpg',
+                 'onyang7.jpg', 'onyang8.jpg', 'onyang9.jpg', 'onyang10.jpg'
+             ];
+            
+             flashElements.forEach((element, index) => {
+                 if (onyangImageUrls[index]) {
+                     element.style.backgroundImage = `url(${onyangImageUrls[index]})`;
+                 }
+             });
+        });
+    </script>
+</body>
+</html>
