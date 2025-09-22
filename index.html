@@ -112,7 +112,7 @@
             90% { transform: translate(-1%, -1%); }
         }
         
-        /* 온양행궁 이미지 플래시 - 개선된 전환 */
+        /* 온양행궁 이미지 플래시 - 깔끔한 전환 */
         .palace-images {
             position: absolute;
             top: 0;
@@ -132,18 +132,11 @@
             background-size: cover;
             background-position: center;
             filter: sepia(1) contrast(1.2) brightness(0.9);
-            transition: opacity 0.6s ease-in-out;
-            z-index: 1;
+            transition: opacity 0.3s ease-in-out;
         }
         
         .palace-flash.active {
             opacity: 1;
-            z-index: 2;
-        }
-        
-        .palace-flash.previous {
-            opacity: 1;
-            z-index: 1;
         }
         
         /* 플래시 이미지들 - 실제 온양행궁 이미지 (6장) */
@@ -592,7 +585,6 @@
         // 플래시 이미지 요소들
         const flashElements = document.querySelectorAll('.palace-flash');
         let currentIndex = 0;
-        let previousElement = null;
         
         // 이미지 프리로드 먼저 실행
         function preloadImages() {
@@ -617,55 +609,51 @@
             return Promise.all(promises);
         }
         
-        // 개선된 전환 애니메이션
+        // 깔끔한 전환 애니메이션
         function startFlashAnimation() {
-            // 첫 번째 이미지 표시
-            if (flashElements.length > 0) {
-                flashElements[0].classList.add('active');
-                previousElement = flashElements[0];
-                currentIndex = 1;
+            // 모든 이미지 초기화
+            flashElements.forEach(el => {
+                el.classList.remove('active');
+                el.style.opacity = '0';
+            });
+            
+            function showImage(index) {
+                if (index >= flashElements.length) {
+                    // 마지막 이미지 후 메인 컨텐츠로 전환
+                    setTimeout(() => {
+                        // 마지막 이미지 페이드아웃
+                        if (flashElements[flashElements.length - 1]) {
+                            flashElements[flashElements.length - 1].classList.remove('active');
+                        }
+                        
+                        setTimeout(() => {
+                            document.getElementById('intro').classList.add('fade-out');
+                            document.getElementById('main-content').classList.add('show');
+                            
+                            setTimeout(() => {
+                                document.getElementById('intro').style.display = 'none';
+                            }, 800);
+                        }, 300);
+                    }, 800);
+                    return;
+                }
+                
+                // 현재 이미지 표시
+                flashElements[index].classList.add('active');
+                
+                // 일정 시간 후 페이드아웃하고 다음 이미지로
+                setTimeout(() => {
+                    flashElements[index].classList.remove('active');
+                    
+                    // 검은 화면 유지 시간
+                    setTimeout(() => {
+                        showImage(index + 1);
+                    }, 350);
+                }, 700); // 각 이미지 0.7초 동안 표시
             }
             
-            const flashInterval = setInterval(() => {
-                if (currentIndex < flashElements.length) {
-                    // 현재 요소 활성화
-                    const currentElement = flashElements[currentIndex];
-                    
-                    // 이전 요소를 previous로 변경 (계속 보이지만 뒤로)
-                    if (previousElement) {
-                        previousElement.classList.remove('active');
-                        previousElement.classList.add('previous');
-                    }
-                    
-                    // 현재 요소 활성화
-                    currentElement.classList.add('active');
-                    
-                    // 0.6초 후 이전 요소 완전히 제거
-                    setTimeout(() => {
-                        if (previousElement) {
-                            previousElement.classList.remove('previous');
-                            previousElement.style.opacity = '0';
-                        }
-                    }, 600);
-                    
-                    // 다음을 위해 현재를 이전으로 저장
-                    previousElement = currentElement;
-                    currentIndex++;
-                } else {
-                    clearInterval(flashInterval);
-                    
-                    // 메인 컨텐츠로 전환
-                    setTimeout(() => {
-                        document.getElementById('intro').classList.add('fade-out');
-                        document.getElementById('main-content').classList.add('show');
-                        
-                        // 인트로 완전히 제거
-                        setTimeout(() => {
-                            document.getElementById('intro').style.display = 'none';
-                        }, 800);
-                    }, 1200); // 마지막 이미지 1.2초 유지
-                }
-            }, 1000); // 각 이미지 1초 간격
+            // 첫 번째 이미지부터 시작
+            showImage(0);
         }
         
         // 페이지 로드 시 실행
