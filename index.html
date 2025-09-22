@@ -137,7 +137,7 @@
         
         .palace-flash.active {
             display: block;
-            animation: smoothFlash 0.25s ease-in-out;
+            animation: smoothFlash 0.5s ease-in-out;
         }
         
         /* 자연스러운 필름 플래시 효과 */
@@ -146,14 +146,18 @@
                 opacity: 0;
                 transform: scale(1);
             }
-            20% {
+            15% {
                 opacity: 0.9;
             }
-            50% { 
+            40% { 
                 opacity: 1;
                 transform: scale(1);
             }
-            80% {
+            60% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            85% {
                 opacity: 0.9;
             }
             100% { 
@@ -509,7 +513,7 @@
                         if (currentIndex > 0) {
                             flashElements[currentIndex - 1].classList.remove('active');
                         }
-                    }, 200);
+                    }, 450);
                     
                     currentIndex++;
                 } else {
@@ -518,7 +522,7 @@
                         if (flashElements.length > 0) {
                             flashElements[flashElements.length - 1].classList.remove('active');
                         }
-                    }, 200);
+                    }, 450);
                     
                     clearInterval(flashInterval);
                     
@@ -531,9 +535,9 @@
                         setTimeout(() => {
                             document.getElementById('intro').style.display = 'none';
                         }, 800);
-                    }, 300);
+                    }, 500);
                 }
-            }, 180); // 각 이미지를 0.18초 간격으로 자연스럽게 전환
+            }, 400); // 각 이미지를 0.4초 간격으로 보여주기 (충분히 인식 가능)
         }
         
         // 페이지 로드 시 실행
@@ -543,7 +547,7 @@
                 // 로고 표시 후 플래시 시작
                 setTimeout(() => {
                     startFlashAnimation();
-                }, 1200); // 로고 표시 1.2초 후 시작
+                }, 1500); // 로고 표시 1.5초 후 시작
             });
         });
         
