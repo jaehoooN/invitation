@@ -112,7 +112,7 @@
             90% { transform: translate(-1%, -1%); }
         }
         
-        /* 온양행궁 이미지 플래시 - 빠른 필름 효과 */
+        /* 온양행궁 이미지 플래시 - 개선된 전환 */
         .palace-images {
             position: absolute;
             top: 0;
@@ -132,15 +132,18 @@
             background-size: cover;
             background-position: center;
             filter: sepia(1) contrast(1.2) brightness(0.9);
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.6s ease-in-out;
+            z-index: 1;
         }
         
         .palace-flash.active {
             opacity: 1;
+            z-index: 2;
         }
         
-        .palace-flash.fade-out {
-            opacity: 0;
+        .palace-flash.previous {
+            opacity: 1;
+            z-index: 1;
         }
         
         /* 플래시 이미지들 - 실제 온양행궁 이미지 (6장) */
@@ -589,6 +592,7 @@
         // 플래시 이미지 요소들
         const flashElements = document.querySelectorAll('.palace-flash');
         let currentIndex = 0;
+        let previousElement = null;
         
         // 이미지 프리로드 먼저 실행
         function preloadImages() {
@@ -613,34 +617,44 @@
             return Promise.all(promises);
         }
         
-        // 부드러운 전환 애니메이션
+        // 개선된 전환 애니메이션
         function startFlashAnimation() {
-            // 첫 번째 이미지 즉시 표시
+            // 첫 번째 이미지 표시
             if (flashElements.length > 0) {
                 flashElements[0].classList.add('active');
+                previousElement = flashElements[0];
                 currentIndex = 1;
             }
             
             const flashInterval = setInterval(() => {
                 if (currentIndex < flashElements.length) {
-                    // 다음 이미지 표시
-                    flashElements[currentIndex].classList.add('active');
+                    // 현재 요소 활성화
+                    const currentElement = flashElements[currentIndex];
                     
-                    // 이전 이미지 페이드아웃 (약간의 딜레이 후)
-                    const prevIndex = currentIndex - 1;
+                    // 이전 요소를 previous로 변경 (계속 보이지만 뒤로)
+                    if (previousElement) {
+                        previousElement.classList.remove('active');
+                        previousElement.classList.add('previous');
+                    }
+                    
+                    // 현재 요소 활성화
+                    currentElement.classList.add('active');
+                    
+                    // 0.6초 후 이전 요소 완전히 제거
                     setTimeout(() => {
-                        flashElements[prevIndex].classList.add('fade-out');
-                        // 완전히 사라진 후 클래스 제거
-                        setTimeout(() => {
-                            flashElements[prevIndex].classList.remove('active', 'fade-out');
-                        }, 400);
-                    }, 100);
+                        if (previousElement) {
+                            previousElement.classList.remove('previous');
+                            previousElement.style.opacity = '0';
+                        }
+                    }, 600);
                     
+                    // 다음을 위해 현재를 이전으로 저장
+                    previousElement = currentElement;
                     currentIndex++;
                 } else {
                     clearInterval(flashInterval);
                     
-                    // 메인 컨텐츠로 전환 (마지막 이미지 유지하면서)
+                    // 메인 컨텐츠로 전환
                     setTimeout(() => {
                         document.getElementById('intro').classList.add('fade-out');
                         document.getElementById('main-content').classList.add('show');
@@ -649,9 +663,9 @@
                         setTimeout(() => {
                             document.getElementById('intro').style.display = 'none';
                         }, 800);
-                    }, 1000); // 마지막 이미지를 1초 더 유지
+                    }, 1200); // 마지막 이미지 1.2초 유지
                 }
-            }, 900); // 각 이미지 0.9초 간격으로 전환
+            }, 1000); // 각 이미지 1초 간격
         }
         
         // 페이지 로드 시 실행
