@@ -137,7 +137,7 @@
         
         .palace-flash.active {
             display: block;
-            animation: smoothFlash 0.5s ease-in-out;
+            animation: smoothFlash 1s ease-in-out;
         }
         
         /* 자연스러운 필름 플래시 효과 */
@@ -146,19 +146,19 @@
                 opacity: 0;
                 transform: scale(1);
             }
-            15% {
-                opacity: 0.9;
+            10% {
+                opacity: 0.8;
             }
-            40% { 
+            30% { 
                 opacity: 1;
                 transform: scale(1);
             }
-            60% { 
+            70% { 
                 opacity: 1;
                 transform: scale(1);
             }
-            85% {
-                opacity: 0.9;
+            90% {
+                opacity: 0.8;
             }
             100% { 
                 opacity: 0;
@@ -513,7 +513,7 @@
                         if (currentIndex > 0) {
                             flashElements[currentIndex - 1].classList.remove('active');
                         }
-                    }, 450);
+                    }, 900);
                     
                     currentIndex++;
                 } else {
@@ -522,7 +522,7 @@
                         if (flashElements.length > 0) {
                             flashElements[flashElements.length - 1].classList.remove('active');
                         }
-                    }, 450);
+                    }, 900);
                     
                     clearInterval(flashInterval);
                     
@@ -535,9 +535,9 @@
                         setTimeout(() => {
                             document.getElementById('intro').style.display = 'none';
                         }, 800);
-                    }, 500);
+                    }, 700);
                 }
-            }, 400); // 각 이미지를 0.4초 간격으로 보여주기 (충분히 인식 가능)
+            }, 800); // 각 이미지를 0.8초 간격으로 충분히 보여주기
         }
         
         // 페이지 로드 시 실행
@@ -547,7 +547,7 @@
                 // 로고 표시 후 플래시 시작
                 setTimeout(() => {
                     startFlashAnimation();
-                }, 1500); // 로고 표시 1.5초 후 시작
+                }, 2000); // 로고 표시 2초 후 시작
             });
         });
         
