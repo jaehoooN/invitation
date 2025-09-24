@@ -21,6 +21,24 @@
             background-color: #F5E6D3;
         }
         
+        /* 로딩 인디케이터 */
+        .loading-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 9999;
+            display: none;
+        }
+        
+        .loading-indicator.show {
+            display: block;
+        }
+        
         /* 인트로 화면 */
         #intro {
             position: fixed;
@@ -47,6 +65,9 @@
             z-index: 10;
             opacity: 0;
             animation: fadeInLogo 1s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         /* 온빈 로고 이미지 */
@@ -54,6 +75,25 @@
             width: 280px;
             height: auto;
             filter: invert(1) brightness(0.9);
+            display: block;
+        }
+        
+        /* 로고 이미지 로드 실패시 대체 텍스트 */
+        .logo-fallback {
+            display: none;
+            font-size: 4rem;
+            font-weight: 800;
+            color: #F5E6D3;
+            letter-spacing: 0.3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-img.error + .logo-fallback {
+            display: block;
+        }
+        
+        .logo-img.error {
+            display: none;
         }
         
         @keyframes fadeInLogo {
@@ -112,7 +152,7 @@
             90% { transform: translate(-1%, -1%); }
         }
         
-        /* 온양행궁 이미지 플래시 - 깔끔한 전환 */
+        /* 온양행궁 이미지 플래시 */
         .palace-images {
             position: absolute;
             top: 0;
@@ -120,6 +160,7 @@
             width: 100%;
             height: 100%;
             z-index: 5;
+            pointer-events: none;
         }
         
         .palace-flash {
@@ -131,21 +172,41 @@
             opacity: 0;
             background-size: cover;
             background-position: center;
-            filter: sepia(1) contrast(1.2) brightness(0.9);
-            transition: opacity 0.3s ease-in-out;
+            background-repeat: no-repeat;
+            filter: sepia(0.3) contrast(1.1) brightness(0.9);
+            transition: opacity 0.4s ease-in-out;
         }
         
         .palace-flash.active {
-            opacity: 1;
+            opacity: 0.9;
         }
         
-        /* 플래시 이미지들 - 실제 온양행궁 이미지 (6장) */
+        /* 플래시 이미지들 - 백그라운드 이미지로 설정 */
         .flash1 { background-image: url('onyang1.jpg'); }
         .flash2 { background-image: url('onyang2.jpg'); }
         .flash3 { background-image: url('onyang3.jpg'); }
         .flash4 { background-image: url('onyang4.jpg'); }
         .flash5 { background-image: url('onyang5.jpg'); }
         .flash6 { background-image: url('onyang6.jpg'); }
+        
+        /* 이미지 로드 실패 대체 */
+        .image-error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #F5E6D3;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            display: none;
+            z-index: 20;
+        }
+        
+        .image-error-message.show {
+            display: block;
+        }
         
         /* 메인 컨텐츠 */
         #main-content {
@@ -165,7 +226,7 @@
             opacity: 1;
         }
         
-        /* 한지 텍스처 오버레이 - 강화 */
+        /* 한지 텍스처 오버레이 */
         #main-content::before {
             content: "";
             position: absolute;
@@ -174,7 +235,6 @@
             right: 0;
             bottom: 0;
             background-image: 
-                /* 한지 섬유 질감 */
                 repeating-linear-gradient(
                     45deg,
                     transparent,
@@ -189,12 +249,8 @@
                     rgba(160, 82, 45, 0.015) 35px,
                     rgba(160, 82, 45, 0.015) 70px
                 ),
-                /* 자연스러운 얼룩 */
                 radial-gradient(ellipse at 20% 30%, rgba(139, 69, 19, 0.03) 0%, transparent 40%),
-                radial-gradient(ellipse at 80% 70%, rgba(160, 82, 45, 0.025) 0%, transparent 45%),
-                radial-gradient(ellipse at 40% 60%, rgba(139, 69, 19, 0.02) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 20%, rgba(188, 143, 95, 0.02) 0%, transparent 40%),
-                radial-gradient(ellipse at 30% 80%, rgba(139, 69, 19, 0.015) 0%, transparent 35%);
+                radial-gradient(ellipse at 80% 70%, rgba(160, 82, 45, 0.025) 0%, transparent 45%);
             pointer-events: none;
             mix-blend-mode: multiply;
         }
@@ -226,7 +282,6 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            /* 오래된 종이 테두리 효과 */
             filter: drop-shadow(0 4px 12px rgba(139, 69, 19, 0.15));
         }
         
@@ -237,6 +292,25 @@
             margin: 0 auto 40px;
             opacity: 0.75;
             filter: sepia(0.2) contrast(0.95);
+            display: block;
+        }
+        
+        /* 메인 로고 대체 텍스트 */
+        .main-logo-fallback {
+            display: none;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3D2F2F;
+            margin-bottom: 40px;
+            letter-spacing: 0.3em;
+        }
+        
+        .main-logo.error + .main-logo-fallback {
+            display: block;
+        }
+        
+        .main-logo.error {
+            display: none;
         }
         
         .title {
@@ -248,7 +322,6 @@
             line-height: 1.4;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
-            /* 붓글씨 느낌 */
             font-variation-settings: "wght" 800;
         }
         
@@ -268,13 +341,11 @@
             margin-bottom: 40px;
             text-align: center;
             padding: 0 20px;
-            /* 먹의 번짐 효과 */
             text-shadow: 0 1px 1px rgba(61, 47, 47, 0.08);
         }
         
         .content p {
             margin-bottom: 25px;
-            /* 각 문단에 미세한 기울임 */
             transform: rotate(-0.2deg);
         }
         
@@ -296,7 +367,6 @@
                 0 2px 10px rgba(139, 69, 19, 0.08),
                 inset 0 1px 3px rgba(255, 255, 255, 0.5);
             position: relative;
-            /* 오래된 종이 모서리 효과 */
             border: 1px solid rgba(139, 69, 19, 0.05);
         }
         
@@ -360,7 +430,6 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             display: inline-block;
             position: relative;
-            /* 전통 인장 느낌 */
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
         
@@ -380,7 +449,6 @@
             position: relative;
         }
         
-        /* 전통 문양 장식 */
         .signature::before {
             content: "❦";
             position: absolute;
@@ -400,11 +468,9 @@
             text-align: center;
             letter-spacing: 0.08em;
             opacity: 0.85;
-            /* 인장 글씨체 느낌 */
             font-weight: 700;
         }
         
-        /* 장식 요소 - 전통적 스타일로 개선 */
         .ornament {
             width: 60px;
             height: 1px;
@@ -437,22 +503,6 @@
         
         .ornament::after {
             right: -20px;
-        }
-        
-        /* 전체적인 빈티지 효과 추가 */
-        body {
-            font-family: 'Nanum Myeongjo', serif;
-            overflow-x: hidden;
-            background-color: #F5E6D3;
-            /* 미세한 노이즈 패턴 */
-            background-image: 
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(139, 69, 19, 0.01) 2px,
-                    rgba(139, 69, 19, 0.01) 4px
-                );
         }
         
         /* 모바일 대응 */
@@ -498,23 +548,37 @@
     </style>
 </head>
 <body>
+    <!-- 디버깅용 로딩 인디케이터 -->
+    <div class="loading-indicator" id="loadingIndicator">
+        이미지 로딩 중...
+    </div>
+    
     <!-- 인트로 화면 -->
     <div id="intro">
         <div class="film-grain"></div>
         
-        <!-- 온양행궁 플래시 이미지들 (6장) -->
+        <!-- 온양행궁 플래시 이미지들 -->
         <div class="palace-images">
-            <div class="palace-flash flash1"></div>
-            <div class="palace-flash flash2"></div>
-            <div class="palace-flash flash3"></div>
-            <div class="palace-flash flash4"></div>
-            <div class="palace-flash flash5"></div>
-            <div class="palace-flash flash6"></div>
+            <div class="palace-flash flash1" data-image="onyang1.jpg"></div>
+            <div class="palace-flash flash2" data-image="onyang2.jpg"></div>
+            <div class="palace-flash flash3" data-image="onyang3.jpg"></div>
+            <div class="palace-flash flash4" data-image="onyang4.jpg"></div>
+            <div class="palace-flash flash5" data-image="onyang5.jpg"></div>
+            <div class="palace-flash flash6" data-image="onyang6.jpg"></div>
+        </div>
+        
+        <!-- 이미지 로드 실패 메시지 -->
+        <div class="image-error-message" id="imageError">
+            <h3>이미지 로드 실패</h3>
+            <p>온양행궁 이미지를 불러올 수 없습니다.</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">이미지 파일을 확인해주세요.</p>
         </div>
         
         <div class="logo-container">
             <!-- 온빈 로고 이미지 -->
-            <img class="logo-img" src="onbin-logo.png" alt="온빈">
+            <img class="logo-img" src="onbin-logo.png" alt="온빈" 
+                 onerror="this.classList.add('error'); console.error('로고 이미지 로드 실패');">
+            <div class="logo-fallback">온빈<br><span style="font-size: 1.5rem;">溫濱</span></div>
         </div>
     </div>
     
@@ -522,7 +586,9 @@
     <div id="main-content">
         <div class="invitation-container">
             <!-- 메인 페이지 로고 -->
-            <img class="main-logo" src="onbin-logo.png" alt="온빈">
+            <img class="main-logo" src="onbin-logo.png" alt="온빈" 
+                 onerror="this.classList.add('error');">
+            <div class="main-logo-fallback">온빈<br><span style="font-size: 1rem; opacity: 0.8;">溫濱</span></div>
             
             <h1 class="title">초대합니다</h1>
             <p class="subtitle">모던 한식의 새로운 시작</p>
@@ -582,50 +648,104 @@
     </div>
     
     <script>
+        // 디버깅을 위한 콘솔 로그
+        console.log('스크립트 시작');
+        
+        // 이미지 로드 상태 추적
+        let imagesLoaded = 0;
+        let totalImages = 6;
+        let imageLoadErrors = [];
+        
         // 플래시 이미지 요소들
         const flashElements = document.querySelectorAll('.palace-flash');
-        let currentIndex = 0;
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const imageError = document.getElementById('imageError');
         
-        // 이미지 프리로드 먼저 실행
+        // 이미지 프리로드 함수
         function preloadImages() {
+            console.log('이미지 프리로드 시작');
+            loadingIndicator.classList.add('show');
+            
             const imageUrls = [
-                'onyang1.jpg', 'onyang2.jpg', 'onyang3.jpg', 
-                'onyang4.jpg', 'onyang5.jpg', 'onyang6.jpg'
+                'onyang1.jpg', 
+                'onyang2.jpg', 
+                'onyang3.jpg', 
+                'onyang4.jpg', 
+                'onyang5.jpg', 
+                'onyang6.jpg'
             ];
             
-            const promises = imageUrls.map(url => {
-                return new Promise((resolve, reject) => {
+            const promises = imageUrls.map((url, index) => {
+                return new Promise((resolve) => {
                     const img = new Image();
-                    img.onload = resolve;
-                    img.onerror = resolve; // 에러여도 계속 진행
+                    
+                    img.onload = function() {
+                        imagesLoaded++;
+                        console.log(`이미지 로드 성공: ${url} (${imagesLoaded}/${totalImages})`);
+                        loadingIndicator.textContent = `이미지 로딩 중... (${imagesLoaded}/${totalImages})`;
+                        
+                        // 실제로 백그라운드 이미지 설정
+                        flashElements[index].style.backgroundImage = `url('${url}')`;
+                        resolve(true);
+                    };
+                    
+                    img.onerror = function() {
+                        console.error(`이미지 로드 실패: ${url}`);
+                        imageLoadErrors.push(url);
+                        
+                        // 대체 이미지 또는 그라데이션 설정
+                        flashElements[index].style.background = `
+                            linear-gradient(135deg, 
+                                rgba(139, 69, 19, 0.3) 0%, 
+                                rgba(160, 82, 45, 0.5) 50%, 
+                                rgba(139, 69, 19, 0.3) 100%)
+                        `;
+                        
+                        resolve(false);
+                    };
+                    
+                    // 이미지 소스 설정 (이것이 로드를 시작함)
                     img.src = url;
                 });
             });
             
-            // 로고 이미지도 프리로드
-            const logoImg = new Image();
-            logoImg.src = 'onbin-logo.png';
-            
             return Promise.all(promises);
         }
         
-        // 깔끔한 전환 애니메이션
+        // 플래시 애니메이션 함수
         function startFlashAnimation() {
-            // 모든 이미지 초기화
-            flashElements.forEach(el => {
-                el.classList.remove('active');
-                el.style.opacity = '0';
-            });
+            console.log('플래시 애니메이션 시작');
+            loadingIndicator.classList.remove('show');
             
-            function showImage(index) {
-                if (index >= flashElements.length) {
-                    // 마지막 이미지 후 메인 컨텐츠로 전환
+            // 이미지가 하나도 로드되지 않았다면 에러 표시
+            if (imagesLoaded === 0) {
+                console.error('모든 이미지 로드 실패');
+                imageError.classList.add('show');
+                
+                // 3초 후 메인 컨텐츠로 이동
+                setTimeout(() => {
+                    document.getElementById('intro').classList.add('fade-out');
+                    document.getElementById('main-content').classList.add('show');
                     setTimeout(() => {
-                        // 마지막 이미지 페이드아웃
-                        if (flashElements[flashElements.length - 1]) {
-                            flashElements[flashElements.length - 1].classList.remove('active');
+                        document.getElementById('intro').style.display = 'none';
+                    }, 800);
+                }, 3000);
+                return;
+            }
+            
+            let currentIndex = 0;
+            
+            function showNextImage() {
+                if (currentIndex >= flashElements.length) {
+                    console.log('모든 이미지 표시 완료, 메인 컨텐츠로 전환');
+                    
+                    // 마지막 이미지 페이드아웃
+                    setTimeout(() => {
+                        if (currentIndex > 0) {
+                            flashElements[currentIndex - 1].classList.remove('active');
                         }
                         
+                        // 메인 컨텐츠로 전환
                         setTimeout(() => {
                             document.getElementById('intro').classList.add('fade-out');
                             document.getElementById('main-content').classList.add('show');
@@ -634,36 +754,49 @@
                                 document.getElementById('intro').style.display = 'none';
                             }, 800);
                         }, 300);
-                    }, 800);
+                    }, 700);
                     return;
                 }
                 
-                // 현재 이미지 표시
-                flashElements[index].classList.add('active');
+                // 이전 이미지 페이드아웃
+                if (currentIndex > 0) {
+                    flashElements[currentIndex - 1].classList.remove('active');
+                }
                 
-                // 일정 시간 후 페이드아웃하고 다음 이미지로
-                setTimeout(() => {
-                    flashElements[index].classList.remove('active');
-                    
-                    // 검은 화면 유지 시간
-                    setTimeout(() => {
-                        showImage(index + 1);
-                    }, 350);
-                }, 700); // 각 이미지 0.7초 동안 표시
+                // 현재 이미지 페이드인
+                console.log(`이미지 ${currentIndex + 1} 표시`);
+                flashElements[currentIndex].classList.add('active');
+                
+                currentIndex++;
+                
+                // 다음 이미지로 전환
+                setTimeout(showNextImage, 700);
             }
             
-            // 첫 번째 이미지부터 시작
-            showImage(0);
+            // 애니메이션 시작
+            setTimeout(showNextImage, 200);
         }
         
         // 페이지 로드 시 실행
         window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM 로드 완료');
+            
             // 이미지 프리로드 후 애니메이션 시작
-            preloadImages().then(() => {
+            preloadImages().then((results) => {
+                console.log('프리로드 완료 결과:', results);
+                
+                if (imageLoadErrors.length > 0) {
+                    console.warn('일부 이미지 로드 실패:', imageLoadErrors);
+                }
+                
                 // 로고 표시 후 플래시 시작
                 setTimeout(() => {
                     startFlashAnimation();
-                }, 1800); // 로고 표시 1.8초 후 시작
+                }, 2000); // 로고 표시 2초 후 시작
+            }).catch((error) => {
+                console.error('이미지 프리로드 중 오류:', error);
+                loadingIndicator.classList.remove('show');
+                imageError.classList.add('show');
             });
         });
         
@@ -673,6 +806,11 @@
             const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(address)}`;
             window.open(naverMapUrl, '_blank');
         }
+        
+        // 전체 에러 캐치
+        window.addEventListener('error', function(e) {
+            console.error('전역 에러:', e);
+        });
     </script>
 </body>
 </html>
