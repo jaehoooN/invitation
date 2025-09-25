@@ -121,20 +121,20 @@
         }
         
         .invitation-container {
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: 120px 30px 100px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
         
-        /* 메인 로고 - 2배 사이즈로 수정 */
+        /* 메인 로고 */
         .main-logo {
-            width: 220px;
+            width: 180px;
             height: auto;
-            margin: 80px auto 0;
-            opacity: 0.8;
+            margin: 100px auto 0;
+            opacity: 0.75;
             display: block;
         }
         
@@ -144,279 +144,299 @@
         }
         
         .title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 200;
-            color: #2a2a2a;
-            margin: 0 auto 25px;
-            letter-spacing: 0.4em;
+            color: #1a1a1a;
+            margin: 0 auto 20px;
+            letter-spacing: 0.5em;
             line-height: 1.2;
-            padding-left: 0.4em;
+            padding-left: 0.5em;
         }
         
         .subtitle {
-            font-size: 0.9rem;
-            color: #7a7a7a;
-            margin-bottom: 70px;
-            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 80px;
+            letter-spacing: 0.25em;
             font-weight: 300;
         }
         
         /* 심플한 구분선 */
         .divider {
-            width: 50px;
-            height: 1px;
-            background: #d4d4d4;
-            margin: 55px auto;
-            opacity: 0.5;
+            width: 40px;
+            height: 0.5px;
+            background: #c0c0c0;
+            margin: 80px auto;
+            opacity: 0.6;
         }
         
         .content {
-            font-size: 0.95rem;
-            line-height: 2.5;
-            color: #3a3a3a;
-            margin-bottom: 55px;
+            font-size: 0.92rem;
+            line-height: 2.8;
+            color: #2a2a2a;
+            margin-bottom: 80px;
             font-weight: 300;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
         }
         
         .content p {
-            margin-bottom: 25px;
+            margin-bottom: 0;
         }
         
-        /* 모던한 상세 정보 - DATE 중앙 정렬 수정 */
+        /* 모던한 상세 정보 */
         .details {
-            margin: 70px 0;
-            padding: 40px 0;
+            margin: 90px 0;
+            padding: 60px 0;
             background: transparent;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
         }
         
         .details h3 {
-            font-size: 1rem;
-            color: #2a2a2a;
-            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            margin-bottom: 40px;
             font-weight: 300;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
         }
         
         .details p {
-            font-size: 0.9rem;
-            color: #555;
-            margin: 13px auto;
-            line-height: 1.8;
+            font-size: 0.88rem;
+            color: #4a4a4a;
+            margin: 18px auto;
+            line-height: 2;
             font-weight: 300;
             text-align: center;
             display: block;
         }
         
         .details p strong {
-            color: #3a3a3a;
+            color: #2a2a2a;
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             display: inline-block;
-            min-width: 110px;
+            min-width: 100px;
             text-align: right;
-            margin-right: 15px;
+            margin-right: 20px;
         }
         
-        /* 특별 혜택 안내 - 복분자주 텍스트 수정 */
+        /* 특별 혜택 안내 */
         .special-offer {
-            margin: 55px 0;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, rgba(245, 235, 225, 0.4), rgba(250, 240, 230, 0.3));
+            margin: 80px 0;
+            padding: 55px 35px;
+            background: linear-gradient(135deg, rgba(248, 242, 236, 0.5), rgba(252, 246, 240, 0.4));
             position: relative;
             text-align: center;
-            border: 1px solid rgba(200, 180, 160, 0.2);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 0.5px solid rgba(200, 180, 160, 0.25);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
         }
         
         .special-offer h4 {
-            font-size: 1rem;
-            color: #8b6914;
-            margin-bottom: 35px;
+            font-size: 0.95rem;
+            color: #7a6014;
+            margin-bottom: 40px;
             font-weight: 400;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
             position: relative;
         }
         
         .special-offer h4::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 1px;
-            background: rgba(139, 105, 20, 0.3);
+            width: 25px;
+            height: 0.5px;
+            background: rgba(122, 96, 20, 0.4);
         }
         
         .special-offer p {
-            font-size: 0.94rem;
-            color: #3a3a3a;
-            line-height: 2.1;
-            font-weight: 400;
-            letter-spacing: 0.06em;
+            font-size: 0.9rem;
+            color: #2a2a2a;
+            line-height: 2.3;
+            font-weight: 300;
+            letter-spacing: 0.08em;
         }
         
-        /* 버튼 컨테이너 */
+        /* 버튼 컨테이너 - 세로 배치 */
         .button-container {
-            margin-top: 55px;
+            margin: 80px 0;
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
             align-items: center;
-            flex-wrap: wrap;
         }
         
-        /* 공통 버튼 스타일 - 동일한 스타일로 통일 */
+        /* 공통 버튼 스타일 - 동일한 크기 */
         .btn {
             background: transparent;
-            color: #2a2a2a;
-            border: 1px solid #3a3a3a;
-            padding: 14px 35px;
-            font-size: 0.88rem;
+            color: #1a1a1a;
+            border: 0.8px solid #2a2a2a;
+            padding: 16px 0;
+            font-size: 0.85rem;
             font-family: 'Noto Serif KR', serif;
             font-weight: 400;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
             text-decoration: none;
-            min-width: 160px;
+            width: 200px;
+            text-align: center;
         }
         
         .btn:hover {
-            background: #2a2a2a;
+            background: #1a1a1a;
             color: #ffffff;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         
         .signature {
-            margin-top: 90px;
-            padding-top: 35px;
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            margin-top: 120px;
+            padding-top: 50px;
+            border-top: 0.5px solid rgba(0, 0, 0, 0.08);
         }
         
         .signature p {
-            font-size: 0.88rem;
-            color: #6a6a6a;
-            line-height: 2.2;
-            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 2.4;
+            letter-spacing: 0.12em;
             font-weight: 300;
         }
         
         /* 메뉴 프리뷰 - 깔끔하게 */
         .menu-preview {
-            margin: 55px 0;
-            padding: 35px 20px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
+            margin: 80px 0;
+            padding: 50px 25px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
             text-align: center;
+            border: 0.5px solid rgba(0, 0, 0, 0.06);
         }
         
         .menu-preview h4 {
-            font-size: 1rem;
-            color: #2a2a2a;
-            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            margin-bottom: 35px;
             font-weight: 300;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
         }
         
         .menu-preview p {
-            font-size: 0.88rem;
-            color: #555;
-            line-height: 2.1;
+            font-size: 0.85rem;
+            color: #4a4a4a;
+            line-height: 2.3;
             font-weight: 300;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
             text-align: center;
         }
         
         /* 모바일 대응 */
         @media (max-width: 768px) {
             .logo-img {
-                width: 160px;
+                width: 140px;
             }
             
             .main-logo {
-                width: 160px;
+                width: 140px;
+                margin: 80px auto 0;
             }
             
             .invitation-container {
-                padding: 80px 25px 60px;
+                padding: 100px 25px 80px;
             }
             
             .title {
-                font-size: 2rem;
-                padding-left: 0.4em;
+                font-size: 1.9rem;
+                padding-left: 0.5em;
             }
             
             .subtitle {
-                font-size: 0.75rem;
-                margin-bottom: 50px;
+                font-size: 0.72rem;
+                margin-bottom: 60px;
+            }
+            
+            .divider {
+                margin: 60px auto;
             }
             
             .content {
-                font-size: 0.88rem;
-                line-height: 2.4;
+                font-size: 0.85rem;
+                line-height: 2.6;
+                margin-bottom: 60px;
             }
             
             .details {
-                margin: 40px 0;
-                padding: 28px 0;
+                margin: 60px 0;
+                padding: 40px 0;
             }
             
             .details h3 {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                margin-bottom: 30px;
             }
             
             .details p {
-                font-size: 0.82rem;
+                font-size: 0.8rem;
+                margin: 15px auto;
             }
             
             .details p strong {
-                min-width: 70px;
+                min-width: 65px;
+                margin-right: 12px;
             }
             
             .button-container {
-                margin-top: 40px;
-                gap: 15px;
+                margin: 60px 0;
+                gap: 10px;
             }
             
             .btn {
-                padding: 12px 30px;
-                font-size: 0.8rem;
-                min-width: 140px;
+                padding: 14px 0;
+                font-size: 0.78rem;
+                width: 170px;
             }
             
             .menu-preview {
-                padding: 28px 20px;
-                margin: 40px 0;
+                padding: 40px 20px;
+                margin: 60px 0;
             }
             
             .menu-preview h4 {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                margin-bottom: 25px;
             }
             
             .menu-preview p {
-                font-size: 0.82rem;
+                font-size: 0.78rem;
+                line-height: 2.2;
             }
             
             .special-offer {
-                padding: 28px 20px;
-                margin: 40px 0;
+                padding: 40px 25px;
+                margin: 60px 0;
             }
             
             .special-offer h4 {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                margin-bottom: 30px;
             }
             
             .special-offer p {
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                line-height: 2.2;
             }
             
             .signature {
-                margin-top: 60px;
+                margin-top: 80px;
+                padding-top: 35px;
+            }
+            
+            .signature p {
+                font-size: 0.78rem;
             }
         }
         
@@ -466,7 +486,7 @@
                 <p>
                     조선의 왕들이 심신을 달래던 온양<br>
                     그 유서 깊은 땅에<br>
-                    한식점 온빈이 문을 엽니다
+                    한식점 온빈이 가오픈합니다
                 </p>
             </div>
             
@@ -474,7 +494,7 @@
                 <h3>OPENING</h3>
                 <p><strong>DATE</strong>　2025년 10월 1일</p>
                 <p><strong>LOCATION</strong>　충청남도 아산시 순천향로 441-2</p>
-                <p><strong>RESERVATION</strong>　041-546-6566 유선 문의</p>
+                <p><strong>RESERVATION</strong>　유선 문의</p>
             </div>
             
             <div class="menu-preview fade-in-element">
@@ -493,14 +513,6 @@
                 <p>
                     초대장과 함께 찾아주신 분께는<br>
                     직접 담은 고창 복분자주를 증정해 드립니다
-                </p>
-            </div>
-            
-            <div class="content fade-in-element">
-                <p>
-                    절제된 맛<br>
-                    단정한 담음새<br>
-                    조용한 상차림
                 </p>
             </div>
             
