@@ -121,9 +121,9 @@
         }
         
         .invitation-container {
-            max-width: 480px;
+            max-width: 520px;
             margin: 0 auto;
-            padding: 120px 30px 100px;
+            padding: 140px 40px 120px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -131,140 +131,156 @@
         
         /* 메인 로고 */
         .main-logo {
-            width: 180px;
+            width: 160px;
             height: auto;
-            margin: 100px auto 0;
-            opacity: 0.75;
+            margin: 120px auto 0;
+            opacity: 0.7;
             display: block;
         }
         
-        /* 전체 중앙 정렬 강화 */
-        .invitation-container * {
-            text-align: center;
-        }
-        
         .title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 200;
             color: #1a1a1a;
-            margin: 0 auto 20px;
-            letter-spacing: 0.5em;
+            margin: 0 auto 25px;
+            letter-spacing: 0.6em;
             line-height: 1.2;
-            padding-left: 0.5em;
+            text-align: center;
+            padding-left: 0.6em; /* letter-spacing 보정 */
         }
         
         .subtitle {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #888;
-            margin-bottom: 80px;
-            letter-spacing: 0.25em;
+            margin-bottom: 100px;
+            letter-spacing: 0.3em;
             font-weight: 300;
+            text-align: center;
+            padding-left: 0.3em; /* letter-spacing 보정 */
         }
         
         /* 심플한 구분선 */
         .divider {
-            width: 40px;
+            width: 50px;
             height: 0.5px;
             background: #c0c0c0;
-            margin: 80px auto;
-            opacity: 0.6;
+            margin: 100px auto;
+            opacity: 0.5;
         }
         
         .content {
-            font-size: 0.92rem;
-            line-height: 2.8;
+            font-size: 0.95rem;
+            line-height: 3;
             color: #2a2a2a;
-            margin-bottom: 80px;
+            margin-bottom: 100px;
             font-weight: 300;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
+            text-align: center;
         }
         
         .content p {
-            margin-bottom: 0;
+            margin: 0;
+            padding: 0;
         }
         
-        /* 모던한 상세 정보 */
+        /* 모던한 상세 정보 - 깔끔한 두 줄 정렬 */
         .details {
-            margin: 90px 0;
-            padding: 60px 0;
+            margin: 110px 0;
+            padding: 70px 0;
             background: transparent;
-            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+            border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
         }
         
         .details h3 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #1a1a1a;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             font-weight: 300;
-            letter-spacing: 0.3em;
-        }
-        
-        .details p {
-            font-size: 0.88rem;
-            color: #4a4a4a;
-            margin: 18px auto;
-            line-height: 2;
-            font-weight: 300;
+            letter-spacing: 0.35em;
             text-align: center;
-            display: block;
+            padding-left: 0.35em;
         }
         
-        .details p strong {
+        .detail-info {
+            text-align: center;
+        }
+        
+        .detail-item {
+            margin-bottom: 45px;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            margin-bottom: 12px;
+            text-align: center;
+            padding-left: 0.25em;
+        }
+        
+        .detail-value {
+            display: block;
+            font-size: 0.95rem;
             color: #2a2a2a;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            display: inline-block;
-            min-width: 100px;
-            text-align: right;
-            margin-right: 20px;
+            font-weight: 300;
+            line-height: 1.8;
+            text-align: center;
+            letter-spacing: 0.08em;
         }
         
         /* 특별 혜택 안내 */
         .special-offer {
-            margin: 80px 0;
-            padding: 55px 35px;
+            margin: 100px 0;
+            padding: 65px 40px;
             background: linear-gradient(135deg, rgba(248, 242, 236, 0.5), rgba(252, 246, 240, 0.4));
             position: relative;
             text-align: center;
-            border: 0.5px solid rgba(200, 180, 160, 0.25);
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+            border: 0.5px solid rgba(200, 180, 160, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
         
         .special-offer h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #7a6014;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             font-weight: 400;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.4em;
             position: relative;
+            padding-left: 0.4em;
         }
         
         .special-offer h4::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -18px;
             left: 50%;
             transform: translateX(-50%);
-            width: 25px;
+            width: 30px;
             height: 0.5px;
-            background: rgba(122, 96, 20, 0.4);
+            background: rgba(122, 96, 20, 0.3);
         }
         
         .special-offer p {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             color: #2a2a2a;
-            line-height: 2.3;
+            line-height: 2.5;
             font-weight: 300;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
         }
         
         /* 버튼 컨테이너 - 세로 배치 */
         .button-container {
-            margin: 80px 0;
+            margin: 100px 0;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             align-items: center;
         }
         
@@ -273,16 +289,16 @@
             background: transparent;
             color: #1a1a1a;
             border: 0.8px solid #2a2a2a;
-            padding: 16px 0;
-            font-size: 0.85rem;
+            padding: 18px 0;
+            font-size: 0.88rem;
             font-family: 'Noto Serif KR', serif;
             font-weight: 400;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             cursor: pointer;
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: block;
             text-decoration: none;
-            width: 200px;
+            width: 220px;
             text-align: center;
         }
         
@@ -290,161 +306,167 @@
             background: #1a1a1a;
             color: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         }
         
         .signature {
-            margin-top: 120px;
-            padding-top: 50px;
-            border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+            margin-top: 140px;
+            padding-top: 60px;
+            border-top: 0.5px solid rgba(0, 0, 0, 0.06);
+            text-align: center;
         }
         
         .signature p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: #666;
-            line-height: 2.4;
-            letter-spacing: 0.12em;
+            line-height: 2.6;
+            letter-spacing: 0.15em;
             font-weight: 300;
         }
         
         /* 메뉴 프리뷰 - 깔끔하게 */
         .menu-preview {
-            margin: 80px 0;
-            padding: 50px 25px;
+            margin: 100px 0;
+            padding: 60px 30px;
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(8px);
             text-align: center;
-            border: 0.5px solid rgba(0, 0, 0, 0.06);
+            border: 0.5px solid rgba(0, 0, 0, 0.05);
         }
         
         .menu-preview h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #1a1a1a;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             font-weight: 300;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
+            padding-left: 0.35em;
         }
         
         .menu-preview p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: #4a4a4a;
-            line-height: 2.3;
+            line-height: 2.5;
             font-weight: 300;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             text-align: center;
         }
         
         /* 모바일 대응 */
         @media (max-width: 768px) {
             .logo-img {
-                width: 140px;
+                width: 160px;
             }
             
             .main-logo {
-                width: 140px;
-                margin: 80px auto 0;
+                width: 130px;
+                margin: 90px auto 0;
             }
             
             .invitation-container {
-                padding: 100px 25px 80px;
+                padding: 110px 30px 90px;
             }
             
             .title {
-                font-size: 1.9rem;
+                font-size: 2.1rem;
+                letter-spacing: 0.5em;
                 padding-left: 0.5em;
             }
             
             .subtitle {
-                font-size: 0.72rem;
-                margin-bottom: 60px;
+                font-size: 0.75rem;
+                margin-bottom: 70px;
             }
             
             .divider {
-                margin: 60px auto;
+                margin: 70px auto;
             }
             
             .content {
-                font-size: 0.85rem;
-                line-height: 2.6;
-                margin-bottom: 60px;
+                font-size: 0.88rem;
+                line-height: 2.8;
+                margin-bottom: 70px;
             }
             
             .details {
-                margin: 60px 0;
-                padding: 40px 0;
+                margin: 70px 0;
+                padding: 50px 0;
             }
             
             .details h3 {
-                font-size: 0.82rem;
-                margin-bottom: 30px;
+                font-size: 0.85rem;
+                margin-bottom: 35px;
             }
             
-            .details p {
-                font-size: 0.8rem;
-                margin: 15px auto;
+            .detail-item {
+                margin-bottom: 35px;
             }
             
-            .details p strong {
-                min-width: 65px;
-                margin-right: 12px;
+            .detail-label {
+                font-size: 0.75rem;
+                margin-bottom: 10px;
+            }
+            
+            .detail-value {
+                font-size: 0.85rem;
             }
             
             .button-container {
-                margin: 60px 0;
-                gap: 10px;
+                margin: 70px 0;
+                gap: 12px;
             }
             
             .btn {
-                padding: 14px 0;
-                font-size: 0.78rem;
-                width: 170px;
+                padding: 15px 0;
+                font-size: 0.8rem;
+                width: 180px;
             }
             
             .menu-preview {
-                padding: 40px 20px;
-                margin: 60px 0;
+                padding: 45px 25px;
+                margin: 70px 0;
             }
             
             .menu-preview h4 {
-                font-size: 0.82rem;
-                margin-bottom: 25px;
-            }
-            
-            .menu-preview p {
-                font-size: 0.78rem;
-                line-height: 2.2;
-            }
-            
-            .special-offer {
-                padding: 40px 25px;
-                margin: 60px 0;
-            }
-            
-            .special-offer h4 {
-                font-size: 0.82rem;
+                font-size: 0.85rem;
                 margin-bottom: 30px;
             }
             
+            .menu-preview p {
+                font-size: 0.8rem;
+                line-height: 2.3;
+            }
+            
+            .special-offer {
+                padding: 45px 30px;
+                margin: 70px 0;
+            }
+            
+            .special-offer h4 {
+                font-size: 0.85rem;
+                margin-bottom: 35px;
+            }
+            
             .special-offer p {
-                font-size: 0.82rem;
-                line-height: 2.2;
+                font-size: 0.85rem;
+                line-height: 2.3;
             }
             
             .signature {
-                margin-top: 80px;
-                padding-top: 35px;
+                margin-top: 100px;
+                padding-top: 40px;
             }
             
             .signature p {
-                font-size: 0.78rem;
+                font-size: 0.8rem;
             }
         }
         
         /* 스크롤 애니메이션 - 부드럽게 */
         .fade-in-element {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(35px);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .fade-in-element.visible {
@@ -492,19 +514,37 @@
             
             <div class="details fade-in-element">
                 <h3>OPENING</h3>
-                <p><strong>DATE</strong>　2025년 10월 1일</p>
-                <p><strong>LOCATION</strong>　충청남도 아산시 순천향로 441-2</p>
-                <p><strong>RESERVATION</strong>　유선 문의</p>
+                <div class="detail-info">
+                    <div class="detail-item">
+                        <span class="detail-label">DATE</span>
+                        <span class="detail-value">2025년 10월 1일</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">LOCATION</span>
+                        <span class="detail-value">충청남도 아산시 순천향로 441-2</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">RESERVATION</span>
+                        <span class="detail-value">유선 문의</span>
+                    </div>
+                </div>
             </div>
             
             <div class="menu-preview fade-in-element">
                 <h4>MENU</h4>
                 <p>
-                    전복비빔밥　전복죽　전복구이<br>
-                    낙지젓들기름비빔면　삼합전골<br>
-                    명란감자채전　곤드레떡갈비<br>
-                    제철 과일 샐러드<br>
-                    문어구이　육회 지짐밥
+                    전복비빔밥<br>
+                    전복죽<br>
+                    육회 지짐밥<br>
+                    낙지젓들기름비빔면<br>
+                    <br>
+                    전복구이<br>
+                    문어구이<br>
+                    삼합전골<br>
+                    <br>
+                    곤드레떡갈비<br>
+                    명란감자채전<br>
+                    제철 과일 샐러드
                 </p>
             </div>
             
