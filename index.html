@@ -235,6 +235,21 @@
             letter-spacing: 0.08em;
         }
         
+        /* 영업시간 세부사항 스타일 */
+        .hours-main {
+            display: block;
+            font-size: 0.95rem;
+            color: #2a2a2a;
+        }
+        
+        .hours-sub {
+            display: block;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+        
         /* 특별 혜택 안내 */
         .special-offer {
             margin: 100px 0;
@@ -273,6 +288,12 @@
             line-height: 2.5;
             font-weight: 300;
             letter-spacing: 0.1em;
+        }
+        
+        /* 모바일에서 특별 혜택 텍스트 조정 */
+        .special-offer .offer-line {
+            display: block;
+            white-space: nowrap;
         }
         
         /* 버튼 컨테이너 - 세로 배치 */
@@ -453,7 +474,7 @@
             }
             
             .special-offer {
-                padding: 45px 30px;
+                padding: 45px 25px;
                 margin: 70px 0;
             }
             
@@ -463,8 +484,14 @@
             }
             
             .special-offer p {
-                font-size: 0.85rem;
-                line-height: 2.3;
+                font-size: 0.82rem;
+                line-height: 2.2;
+            }
+            
+            /* 모바일에서 특별 혜택 줄바꿈 처리 */
+            .special-offer .offer-line {
+                display: inline;
+                white-space: normal;
             }
             
             .signature {
@@ -532,7 +559,14 @@
                 <div class="detail-info">
                     <div class="detail-item">
                         <span class="detail-label">DATE</span>
-                        <span class="detail-value">2025년 10월 1일</span>
+                        <span class="detail-value">2025년 10월 1일부터</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">HOURS</span>
+                        <span class="detail-value">
+                            <span class="hours-main">10:00 ~ 21:00</span>
+                            <span class="hours-sub">브레이크타임 15:00 ~ 16:30<br>목요일 휴무</span>
+                        </span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">LOCATION</span>
@@ -540,7 +574,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">RESERVATION</span>
-                        <span class="detail-value">유선 문의</span>
+                        <span class="detail-value">영업 시간 중 유선 문의</span>
                     </div>
                 </div>
             </div>
@@ -548,18 +582,18 @@
             <div class="menu-preview fade-in-element">
                 <h4>MENU</h4>
                 <p>
-                    전복비빔밥<br>
-                    전복죽<br>
-                    육회 지짐밥<br>
-                    낙지젓들기름비빔면<br>
+                    전복 비빔밥<br>
+                    완도 전복죽<br>
+                    한우 육회 지짐밥<br>
+                    낙지젓갈과 들기름 비빔면<br>
                     <br>
-                    전복구이<br>
-                    문어구이<br>
-                    삼합 어복쟁반<br>
+                    직화 전복구이<br>
+                    남해 문어구이와 으깬 감자<br>
+                    온빈 어복쟁반<br>
                     <br>
-                    곤드레떡갈비<br>
-                    명란감자채전<br>
-                    계절 과일 샐러드
+                    언양식 바싹떡갈비<br>
+                    명란 감자전<br>
+                    (Salad) 계절 과일과 부라타 치즈
                 </p>
                 <p class="menu-note">
                     * 가오픈 기간 중 메뉴는 수시로 변경될 수 있습니다
@@ -569,9 +603,10 @@
             <div class="special-offer fade-in-element">
                 <h4>SPECIAL OFFER</h4>
                 <p>
-                    초대장과 함께 찾아주신 분께는<br>
-                    수제 고창 복분자주를 증정해 드리며<br>
-                    전체 메뉴 20% 할인 혜택을 제공합니다
+                    <span class="offer-line">가오픈을 기념하여</span>
+                    <span class="offer-line">초대장을 지참하신 모든 분께</span>
+                    <span class="offer-line">고창 수제 복분자주와 함께</span>
+                    <span class="offer-line">20% 할인을 제공합니다</span>
                 </p>
             </div>
             
@@ -687,8 +722,7 @@
         
         // 네이버 지도 열기
         function openMap() {
-            const address = "충청남도 아산시 순천향로 441-2";
-            const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(address)}`;
+            const naverMapUrl = "https://map.naver.com/p/search/%EC%98%A8%EB%B9%88%20%EC%8B%A0%EC%A0%95%ED%98%B8/place/2056888634?c=15.00,0,0,0,dh&isCorrectAnswer=true&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202509291908&locale=ko&svcName=map_pcv5&searchText=%EC%98%A8%EB%B9%88%20%EC%8B%A0%EC%A0%95%ED%98%B8";
             window.open(naverMapUrl, '_blank');
         }
     </script>
